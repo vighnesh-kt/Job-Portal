@@ -2,6 +2,7 @@ package com.jobportal.entity;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,8 +21,7 @@ public class UserPrinciple  implements UserDetails{
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		//return Collections.singleton(new SimpleGrantedAuthority("USER"));		
-		return Collections.singleton(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
+		return Collections.singleton(new SimpleGrantedAuthority("ROLE_" + user.getRole()));	
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class UserPrinciple  implements UserDetails{
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return user.getUsername();
+		return user.getEmail();
 	}
 
 }

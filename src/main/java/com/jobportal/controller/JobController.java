@@ -1,7 +1,12 @@
 package com.jobportal.controller;
 
+
 import java.util.List;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +26,11 @@ public class JobController {
 	@Autowired
 	private JobService service;
 
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("jobPosts")
-	public List<JobPost> getAllJobs() {
+	public List<JobPost> getAllJobs(Authentication authentication) {
+		System.out.println(authentication.getName());
+		System.out.println(authentication.getAuthorities());
 		return service.getAllJobs();
 
 	}
