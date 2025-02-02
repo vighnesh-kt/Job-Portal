@@ -26,7 +26,7 @@ public class JobController {
 	@Autowired
 	private JobService service;
 
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('USER')")
 	@GetMapping("jobPosts")
 	public List<JobPost> getAllJobs(Authentication authentication) {
 		System.out.println(authentication.getName());
